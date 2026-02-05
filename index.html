@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>QRFree - Gerador de QR Code Personalizado Grátis | Crie QR Codes Online</title>
+    <meta name="description" content="QRFree é uma ferramenta gratuita para gerar QR codes personalizados. Crie QR codes com cores, bordas e imagens personalizadas. Sem cadastro, sem limites, 100% online.">
+    <meta name="keywords" content="gerador qr code, qr code personalizado, qr code grátis, criar qr code online, qr code com logo, gerador qr">
+    <meta name="author" content="Gabriel Teles">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="pt-BR">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="QRFree - Gerador de QR Code Personalizado Grátis">
+    <meta property="og:description" content="Crie QR codes personalizados gratuitamente com cores, bordas e imagens personalizadas.">
+    <meta property="og:url" content="https://qrfree.com">
+    <meta property="og:site_name" content="QRFree">
+    <meta property="og:locale" content="pt_BR">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="QRFree - Gerador de QR Code Personalizado">
+    <meta name="twitter:description" content="Crie QR codes personalizados gratuitamente online.">
+    
+    <link rel="canonical" href="https://qrfree.com">
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23667eea' width='100' height='100'/><rect fill='%23764ba2' x='10' y='10' width='30' height='30'/><rect fill='%23764ba2' x='60' y='10' width='30' height='30'/><rect fill='%23764ba2' x='10' y='60' width='30' height='30'/></svg>">
+    <meta name="theme-color" content="#667eea">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>QRFree</h1>
+            <p>Crie QR codes personalizados instantaneamente</p>
+        </header>
+
+        <main class="content">
+            <div class="input-section">
+                <div class="form-group">
+                    <label for="url-input">URL ou Texto:</label>
+                    <input 
+                        type="text" 
+                        id="url-input" 
+                        placeholder="https://www.linkedin.com/in/gabriel--teles/"
+                    >
+                </div>
+
+                <div class="customization-section">
+                    <h3>Personalização</h3>
+                    
+                    <div class="form-group">
+                        <label for="border-size">Tamanho da Borda (px):</label>
+                        <div class="slider-container">
+                            <input 
+                                type="range" 
+                                id="border-size" 
+                                min="0" 
+                                max="100" 
+                                value="20"
+                                class="slider"
+                            >
+                            <span id="border-value" class="value-display">20</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="border-color">Cor da Borda:</label>
+                        <input 
+                            type="color" 
+                            id="border-color" 
+                            value="#ffffff"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="qr-color">Cor do QR Code:</label>
+                        <input 
+                            type="color" 
+                            id="qr-color" 
+                            value="#000000"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bg-color">Cor de Fundo:</label>
+                        <input 
+                            type="color" 
+                            id="bg-color" 
+                            value="#ffffff"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="logo-input">Imagem para o Centro (PNG/JPG):</label>
+                        <div class="file-input-wrapper">
+                            <label for="logo-input" class="file-input-label">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                                <span id="file-name">Clique para selecionar imagem</span>
+                            </label>
+                            <input 
+                                type="file" 
+                                id="logo-input" 
+                                accept="image/png,image/jpeg,image/jpg,image/gif,image/webp"
+                            >
+                        </div>
+                        <button id="remove-logo" class="btn-remove" style="display: none;">Remover Imagem</button>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="logo-size">Tamanho da Imagem (%):</label>
+                        <div class="slider-container">
+                            <input 
+                                type="range" 
+                                id="logo-size" 
+                                min="10" 
+                                max="40" 
+                                value="20"
+                                class="slider"
+                            >
+                            <span id="logo-size-value" class="value-display">20%</span>
+                        </div>
+                    </div>
+
+                    <button id="generate-btn" class="btn btn-primary" style="margin-top: 10px;">
+                        <span>Gerar QR Code</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="preview-section">
+                <h2>Prévia</h2>
+                <div class="qr-preview" id="qr-preview">
+                    <canvas id="qr-canvas"></canvas>
+                </div>
+                <div class="button-group">
+                    <button id="download-btn" class="btn btn-primary">
+                        <span>Baixar QR Code</span>
+                    </button>
+                    <button id="copy-btn" class="btn btn-secondary">
+                        <span>Copiar Imagem</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>QRFree © 2026 - Gerador de QR Codes Gratuito</p>
+            <p class="footer-about">
+                Olá! Meu nome é <strong>Gabriel Teles</strong>, sou desenvolvedor de software. 
+                Criei o <strong>QRFree</strong> como uma alternativa gratuita e acessível para pessoas que buscam 
+                uma ferramenta simples e eficiente para gerar QR codes personalizados. 
+                Algumas funcionalidades ainda estão em desenvolvimento e serão melhoradas em breve. 
+                Obrigado por usar!
+            </p>
+            <a href="https://www.linkedin.com/in/gabriel--teles/" target="_blank" rel="noopener noreferrer" class="linkedin-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+                <span>Conecte-se no LinkedIn</span>
+            </a>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
